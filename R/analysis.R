@@ -137,3 +137,13 @@ ggsave("output/plots/ppc_intervals.png", plot = ppc2, width = 8, height = 6)
 
 combined <- ppc1 + ppc2
 ggsave("output/plots/ppc_combined.png", plot = combined, width = 12, height = 5)
+
+
+# Predictive Modelling
+## NOTE: this method relies on spread = 16 existing in the data to begin with.
+index <- which(football_data$x.i == 16)
+yrep_x16 <- yrep[,index]
+median(yrep_x16)
+quantile(yrep_x16, 0.025)
+quantile(yrep_x16, 0.975)
+

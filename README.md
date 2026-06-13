@@ -24,8 +24,10 @@ Using this model it is found that:
 1. The spread strongly predicts the outcome, for every point of spread the expected outcome increases by ~ 1 point.
 2. There is little to no evidence that the variability of the outcome changes with the spread. High spread games (large difference in strength between teams) do not appear to be more predictable than low spread games.
 
+---
+
 ## Model Validation
-For Bayesian analysis, posterior predictive checks (PPCs) confirm that the model is capable of producing simulated data based on the observed data and thus is valid in its prediction.
+For Bayesian analysis, posterior predictive checks (PPCs) can confirm if the model is capable of producing simulated data based on the observed data and thus is valid in its prediction.
 
 ![PPC Minimum Check & Interbals](output/plots/ppc_combined.png)
 
@@ -33,3 +35,9 @@ Posterior predictive checks confirm:
 1. The model generates simulated data consistent with the observed data.
 2. The models uncertainty appropriately accounts for different spread values.
 
+--- 
+
+## Predictive Modelling
+An additional method of ensuring the model performs as intended is to generate predictions for specific values of the spread and check that the prediction matches with the expected value. 
+
+-include summary of predictive modelling where spread = 16 and result that demonstrates the model works and this aligns with previous findings/interpretations-
