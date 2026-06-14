@@ -1,7 +1,7 @@
 # Football Bayesian Analysis
-This project explores the football.csv dataset to investigate whether the perceived difference in ability between two teams has an affect on the predictability of the outcome.
+This project explores the football.csv dataset to investigate whether the difference in ability between two teams has an affect on the predictability of the outcome.
 
-Before a game, experts predict how many points the "better team" should win by. A point *spread* of 2 represents that the better team is expected to win by 2 points. The *outcome* variable represents the final score of the perceived "better team" minus the score obtained by the opposite team. An outcome of 2 means the "better team" won by two points
+Before a game, experts predict how many points the "better team" should win by. A point *spread* of 2 represents that the better team is expected to win by 2 points. The *outcome* variable represents the final score of the perceived "better team" minus the score obtained by the other team. An outcome of 2 means the "better team" won by two points
 
 > 1) Does the spread predict the average outcome?
 > 2) Does the spread predict how variable the outcome is?
@@ -29,7 +29,7 @@ Using this model it is found that:
 ## Model Validation
 For Bayesian analysis, posterior predictive checks (PPCs) can confirm if the model is capable of producing simulated data based on the observed data and thus is valid in its prediction.
 
-![PPC Minimum Check & Interbals](output/plots/ppc_combined.png)
+![PPC Minimum Check & Intervals](output/plots/ppc_combined.png)
 
 Posterior predictive checks confirm:
 1. The model generates simulated data consistent with the observed data.
@@ -46,6 +46,28 @@ Both predictions had strongly overlapping and large 95% credible intervals, conf
 This reinforces the earlier findings that 
 1. The spread is a strong predictor of the average outcome.
 2. The exact outcome can vary widely and so the spread cannot predict the variability of the outcome.
+
+---
+
+## Summary
+This analysis demonstrates that the spread is a strong and reliable predictor of a game's expected outcome however, the spread itself cannot predict how variable/unpredictable the outcome will be. Games with a large difference between teams are just as unpredictable as games where both teams are similar in ability.
+
+---
+
+## How to Run
+### 1. Clone the repository
+''' 
+git clone https://github.com/airmid-ms/Football-Bayesian-Analysis.git
+cd Football-Bayesian-Analysis
+'''
+
+### 2. Wnsure the relevant libraries are installed 
+'''r
+install.packages(c("tidyverse", "tidybayes", "rjags", "R2jags", "bayesplot", "patchwork"))
+'''
+
+### Run the analysis
+Open 'analysis.Rmd' in Rstudio and run.
 
 ---
 

@@ -1,12 +1,8 @@
 # libraries
 library(tidyverse)
 library(tidybayes)
-library(dplyr)
-library(readr)
-library(ggplot2)
 library(rjags)
 library(R2jags)
-library(tidybayes)
 library(bayesplot) 
 library(patchwork)
 
