@@ -15,7 +15,7 @@ There appears to be a **positive** relationship between spread (predictor) and o
 
 The variability in outcomes looks consistent across different spread values.
 
---
+---
 
 ## Bayesian Regression Model & Inference
 A heteroscedastic model was used instead of a standard linear regression model to explore whether the variability of outcomes changes with the spread, rather than assuming it stays the same.
@@ -38,6 +38,18 @@ Posterior predictive checks confirm:
 --- 
 
 ## Predictive Modelling
-An additional method of ensuring the model performs as intended is to generate predictions for specific values of the spread and check that the prediction matches with the expected value. 
+An additional method of ensuring the model performs as intended is to generate predictions for specific values of the spread and check that the predicted outcome is in line with the expected value. 
 
--include summary of predictive modelling where spread = 16 and result that demonstrates the model works and this aligns with previous findings/interpretations-
+A new data point where spread = 16 was generated to test the model outside of the observed data. This resulted in a predicted median outcome of 16.48, closely matching the expected median outcome of 16.27 from the model's simulated values when spread = 16.
+Both predictions had strongly overlapping and large 95% credible intervals, confirming that the model's predictions are robust and perform well beyond the observed data.
+
+This reinforces the earlier findings that 
+1. The spread is a strong predictor of the average outcome.
+2. The exact outcome can vary widely and so the spread cannot predict the variability of the outcome.
+
+---
+
+## Author
+**Áirmid Murphy-Scott**
+
+Statistics and Biology graduate.

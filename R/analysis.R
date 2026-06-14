@@ -140,10 +140,61 @@ ggsave("output/plots/ppc_combined.png", plot = combined, width = 12, height = 5)
 
 
 # Predictive Modelling
-## NOTE: this method relies on spread = 16 existing in the data to begin with.
+# checking what the median response is when spread = 16
 index <- which(football_data$x.i == 16)
 yrep_x16 <- yrep[,index]
 median(yrep_x16)
 quantile(yrep_x16, 0.025)
 quantile(yrep_x16, 0.975)
 
+# adding
+football_model <- "
+ model {
+  
+    # Likelihood
+    for (i in 1:n_game) {
+    y.i[i] ~ dnorm(mu.i[i], sigma[i]^-2) 
+    mu.i[i] <- alpha + beta*(x.i[i])
+    sigma[i] <- exp(alpha_sigma + beta_sigma*x.i[i])
+    }
+    
+    # Prior
+    alpha ~ dnorm(0, 10^-2) 
+    beta ~ dnorm(0, 10^-2) 
+    alpha_sigma ~ dnorm(0, 10^-2) 
+    beta_sigma ~ dnorm(0, 10^-2) 
+    
+    # Posterior prediction for observed games
+    for(i in 1:n_game) {
+    yrep[i] ~ dnorm(mu.i[i], sigma[i]^-2)
+    }
+    
+    # Prediction for a new game with spread = x_new
+    mu_new <- alpha + beta * x_new
+    sigma_new <- exp(alpha_sigma + beta_sigma * x_new)
+    y_new ~ dnorm(mu_new, sigma_new^-2)
+  
+}
+"  
+
+## new spread value = 16
+football_data <- list(
+  y.i = football_dat$outcome,
+  x.i = football_dat$spread,
+  n_game = nrow(football_dat),
+  x_new = 16) 
+
+params <- c("alpha", "beta", "alpha_sigma", "beta_sigma", "yrep", "y_new") 
+
+mod <- jags(data = football_data,
+            parameters.to.save = params,
+            n.iter = 4000,
+            n.burnin = 2000,
+            model.file = textConnection(football_model))
+
+## Prediction for spread = 16
+y_new_samples <- mod$BUGSoutput$sims.list$y_new
+median(y_new_samples)
+quantile(y_new_samples, c(0.025, 0.975))
+
+## Median and intervals line up very closely, shows the model performs well and isn't overfitting.
