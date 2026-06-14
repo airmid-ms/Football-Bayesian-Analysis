@@ -56,18 +56,18 @@ This analysis demonstrates that the spread is a strong and reliable predictor of
 
 ## How to Run
 ### 1. Clone the repository
-''' 
+```
 git clone https://github.com/airmid-ms/Football-Bayesian-Analysis.git
 cd Football-Bayesian-Analysis
-'''
+```
 
-### 2. Wnsure the relevant libraries are installed 
-'''r
+### 2. Ensure the relevant libraries are installed 
+```r
 install.packages(c("tidyverse", "tidybayes", "rjags", "R2jags", "bayesplot", "patchwork"))
-'''
+```
 
 ### Run the analysis
-Open 'analysis.Rmd' in Rstudio and run.
+Open `analysis.Rmd` in Rstudio and run.
 
 ---
 
